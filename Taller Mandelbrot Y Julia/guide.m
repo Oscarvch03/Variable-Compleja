@@ -22,7 +22,7 @@ function varargout = guide(varargin)
 
 % Edit the above text to modify the response to help guide
 
-% Last Modified by GUIDE v2.5 17-Feb-2020 20:28:47
+% Last Modified by GUIDE v2.5 18-Feb-2020 20:13:21
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -128,24 +128,9 @@ n = str2double(get(handles.valorden, "String"))
 c = str2double(get(handles.valordec, "String"))
 a=2;
 b=2;
-x=-a:0.005:a;
-y=-b:0.005:b;
-
+x=-a:0.003:a;
+y=-b:0.003:b;
 Z=matrix(a,b);
-lenZ = size(Z);
-
-W=zeros(lenZ(1), lenZ(2));
-exp=n;
-for i=1:lenZ(1)
-    for j=1:lenZ(2)
-        w=Z(i,j);
-        r=julia(w,1000,exp, c);
-        W(i,j)= int8(r *127.5);
-    end
-end
-
-% mesh(x, y, W)
-imagesc(x, y, W);
+W=new_J(Z,c,2,n);
+imagesc(x, y, W)
 colormap colorcube;
-
-
