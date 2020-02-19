@@ -2,24 +2,29 @@ clc
 a=2;
 b=2;
 
-x=-a:0.001:a;
-y=-b:0.001:b;
+x=-a:0.01:a;
+y=-b:0.01:b;
 
-time = 0:0.01:2*pi;
-f = @(t) cos(t) + i*sin(t);
+time = 0:0.03:2*pi;
+f = @(t) cos(t) + 1i*sin(t);
 c = 0.7885 .* f(time)
 
-out = zeros(length(time));
 
-% for i=1:length(t)
-%     
-%     
-% end
+v = VideoWriter('Julia.avi');
+v.FrameRate = 20;
+
 Z=matrix(a,b);
-W=new_J(Z,c(100),2,2);
-
-
 
 figure
-imagesc(x, y, W)
-colormap colorcube;
+colormap default;
+
+open(v);
+
+for i=1:length(c)
+    W=new_J(Z,c(i),2,2);
+    imagesc(x,y,W);
+    F = getframe(gcf);
+    writeVideo(v, F);
+end
+
+close(v);
