@@ -31,7 +31,158 @@ X = horzcat(X, y);
 Y = horzcat(Y, x);
 
 
-ymax = max(y)
+ymax = max(y);
+for i = 1:length(y)
+    if(y(i) == ymax)
+        xymax = x(i);
+        break;
+    end
+end
 
-plot(X, Y)
+r = 0.3;
+x1 = r*cos(theta) + xymax;
+y1 = r*sin(theta) + ymax;
+X(length(X)+1) = NaN;
+Y(length(Y)+1) = NaN;
+X = horzcat(X, x1);
+Y = horzcat(Y, y1);
+
+r = 0.5;
+x1 = r*cos(theta) + xymax;
+y1 = r*sin(theta) + ymax;
+X(length(X)+1) = NaN;
+Y(length(Y)+1) = NaN;
+X = horzcat(X, x1);
+Y = horzcat(Y, y1);
+
+r = 0.3;
+x1 = r*cos(theta) - xymax;
+y1 = r*sin(theta) - ymax;
+X(length(X)+1) = NaN;
+Y(length(Y)+1) = NaN;
+X = horzcat(X, x1);
+Y = horzcat(Y, y1);
+
+r = 0.5;
+x1 = r*cos(theta) - xymax;
+y1 = r*sin(theta) - ymax;
+X(length(X)+1) = NaN;
+Y(length(Y)+1) = NaN;
+X = horzcat(X, x1);
+Y = horzcat(Y, y1);
+
+r = 0.3;
+x1 = r*cos(theta) + xymax;
+y1 = r*sin(theta) - ymax;
+X(length(X)+1) = NaN;
+Y(length(Y)+1) = NaN;
+X = horzcat(X, x1);
+Y = horzcat(Y, y1);
+
+r = 0.5;
+x1 = r*cos(theta) + xymax;
+y1 = r*sin(theta) - ymax;
+X(length(X)+1) = NaN;
+Y(length(Y)+1) = NaN;
+X = horzcat(X, x1);
+Y = horzcat(Y, y1);
+
+r = 0.3;
+x1 = r*cos(theta) - xymax;
+y1 = r*sin(theta) + ymax;
+X(length(X)+1) = NaN;
+Y(length(Y)+1) = NaN;
+X = horzcat(X, x1);
+Y = horzcat(Y, y1);
+
+r = 0.5;
+x1 = r*cos(theta) - xymax;
+y1 = r*sin(theta) + ymax;
+X(length(X)+1) = NaN;
+Y(length(Y)+1) = NaN;
+X = horzcat(X, x1);
+Y = horzcat(Y, y1);
+
+%
+
+r = 0.3;
+x1 = r*cos(theta) + ymax;
+y1 = r*sin(theta) + xymax;
+X(length(X)+1) = NaN;
+Y(length(Y)+1) = NaN;
+X = horzcat(X, x1);
+Y = horzcat(Y, y1);
+
+r = 0.5;
+x1 = r*cos(theta) + ymax;
+y1 = r*sin(theta) + xymax;
+X(length(X)+1) = NaN;
+Y(length(Y)+1) = NaN;
+X = horzcat(X, x1);
+Y = horzcat(Y, y1);
+
+r = 0.3;
+x1 = r*cos(theta) - ymax;
+y1 = r*sin(theta) - xymax;
+X(length(X)+1) = NaN;
+Y(length(Y)+1) = NaN;
+X = horzcat(X, x1);
+Y = horzcat(Y, y1);
+
+r = 0.5;
+x1 = r*cos(theta) - ymax;
+y1 = r*sin(theta) - xymax;
+X(length(X)+1) = NaN;
+Y(length(Y)+1) = NaN;
+X = horzcat(X, x1);
+Y = horzcat(Y, y1);
+
+r = 0.3;
+x1 = r*cos(theta) + ymax;
+y1 = r*sin(theta) - xymax;
+X(length(X)+1) = NaN;
+Y(length(Y)+1) = NaN;
+X = horzcat(X, x1);
+Y = horzcat(Y, y1);
+
+r = 0.5;
+x1 = r*cos(theta) + ymax;
+y1 = r*sin(theta) - xymax;
+X(length(X)+1) = NaN;
+Y(length(Y)+1) = NaN;
+X = horzcat(X, x1);
+Y = horzcat(Y, y1);
+
+r = 0.3;
+x1 = r*cos(theta) - ymax;
+y1 = r*sin(theta) + xymax;
+X(length(X)+1) = NaN;
+Y(length(Y)+1) = NaN;
+X = horzcat(X, x1);
+Y = horzcat(Y, y1);
+
+r = 0.5;
+x1 = r*cos(theta) - ymax;
+y1 = r*sin(theta) + xymax;
+X(length(X)+1) = NaN;
+Y(length(Y)+1) = NaN;
+X = horzcat(X, x1);
+Y = horzcat(Y, y1);
+
+%
+
+Z = complex(X, Y);
+
+X1 = 2.*real(Z)./((abs(Z).^2)+1);
+X2 = 2.*imag(Z)./((abs(Z).^2)+1);
+X3 = ((abs(Z).^2)-1)./((abs(Z).^2)+1);
+
+figure
+plot(X, Y, 'r')
+figure
+[a,b,c] = sphere(50);
+colormap winter
+plot3(a, b, c,'c')
+hold on
+plot3(X1, X2, X3, 'r')
 axis equal

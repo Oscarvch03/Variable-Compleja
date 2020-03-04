@@ -31,5 +31,21 @@ for i = 1:5:length(x)
     Y = horzcat(Y, y1);
 end
 
-plot(X, Y);
+%
+
+Z = complex(X, Y);
+
+X1 = 2.*real(Z)./((abs(Z).^2)+1);
+X2 = 2.*imag(Z)./((abs(Z).^2)+1);
+X3 = ((abs(Z).^2)-1)./((abs(Z).^2)+1);
+
+figure
+plot(X, Y, 'r')
+figure
+[a,b,c] = sphere(50);
+colormap winter
+plot3(a, b, c,'c')
+hold on
+plot3(X1, X2, X3, 'r')
 axis equal
+
