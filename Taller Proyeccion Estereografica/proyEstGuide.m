@@ -24,7 +24,7 @@ function varargout = proyEstGuide(varargin)
 
 % Edit the above text to modify the response to help proyEstGuide
 
-% Last Modified by GUIDE v2.5 04-Mar-2020 18:50:27
+% Last Modified by GUIDE v2.5 05-Mar-2020 11:58:50
 
 
 % Begin initialization code - DO NOT EDIT
@@ -126,16 +126,18 @@ end
 
 % --- Executes on button press in GraficarPuntosProy.
 function GraficarPuntosProy_Callback(hObject, eventdata, handles)
-cla
+
 [a,b,c] = sphere(50);
 
 axes(handles.axes1)
+cla
 plot(NaN,NaN)
 xlabel('Eje Real')
 ylabel('Eje Imaginario')
 xlim([-10, 10])
 ylim([-10, 10])
 axes(handles.axes2)
+cla
 xlabel('Coordenada X1')
 ylabel('Coordenada X2')
 zlabel('Coordenada X3')
@@ -144,6 +146,8 @@ plot3(a, b, c, 'c')
 % hObject    handle to GraficarPuntosProy (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 clc
 n = str2num(get(handles.num_puntos, "String"));
 [x, y] = ginput(n);
@@ -169,6 +173,7 @@ for i=1:length(x)-1
     V = horzcat(V, Y);
 end
 axes(handles.axes1)
+cla
 plot(U, V, 'r')
 xlabel('Eje Real')
 ylabel('Eje Imaginario')
@@ -184,11 +189,14 @@ X2 = 2.*imag(Z)./((abs(Z).^2)+1);
 X3 = ((abs(Z).^2)-1)./((abs(Z).^2)+1);
 
 axes(handles.axes2)
+
 hold on
 plot3(X1, X2, X3, 'r')
 xlim([-1 1])
 ylim([-1 1])
 zlim([-1 1])
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 function num_puntos_Callback(hObject, eventdata, handles)
 % hObject    handle to num_puntos (see GCBO)
@@ -217,11 +225,13 @@ function GraficarFigura_Callback(hObject, eventdata, handles)
 % hObject    handle to GraficarPuntosProy (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-cla
+
 axes(handles.axes1)
+cla
 xlabel('Eje Real')
 ylabel('Eje Imaginario')
 axes(handles.axes2)
+cla
 xlabel('Coordenada X1')
 ylabel('Coordenada X2')
 zlabel('Coordenada X3')
@@ -343,6 +353,8 @@ elseif(f == 2)
     plot(X, Y, 'r')
     xlabel('Eje Real')
     ylabel('Eje Imaginario')
+    xlim([min(X), max(X)])
+    ylim([min(Y), max(Y)])
     axes(handles.axes2)
     
     [a,b,c] = sphere(50);
@@ -353,6 +365,9 @@ elseif(f == 2)
     zlabel('Coordenada X3')
     hold on
     plot3(X1, X2, X3, 'r')
+    xlim([-1 1])
+    ylim([-1 1])
+    zlim([-1 1])
     axis equal
 
 elseif(f == 3)
@@ -538,6 +553,8 @@ elseif(f == 3)
     plot(X, Y, 'r')
     xlabel('Eje Real')
     ylabel('Eje Imaginario')
+    xlim([min(X), max(X)])
+    ylim([min(Y), max(Y)])
     axes(handles.axes2)
     
     [a,b,c] = sphere(50);
@@ -548,6 +565,9 @@ elseif(f == 3)
     zlabel('Coordenada X3')
     hold on
     plot3(X1, X2, X3, 'r')
+    xlim([-1 1])
+    ylim([-1 1])
+    zlim([-1 1])
     axis equal
 elseif(f == 4)
     theta = linspace(-6.2,6.2, 1000);
@@ -592,6 +612,8 @@ elseif(f == 4)
     plot(X, Y, 'r')
     xlabel('Eje Real')
     ylabel('Eje Imaginario')
+    xlim([min(X), max(X)])
+    ylim([min(Y), max(Y)])
     axes(handles.axes2)
     
     [a,b,c] = sphere(50);
@@ -602,5 +624,95 @@ elseif(f == 4)
     zlabel('Coordenada X3')
     hold on
     plot3(X1, X2, X3, 'r')
+    xlim([-1 1])
+    ylim([-1 1])
+    zlim([-1 1])
     axis equal
+end
+
+
+function exit_Callback(hObject, eventdata, handles)
+% hObject    handle to exit (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of exit as text
+%        str2double(get(hObject,'String')) returns contents of exit as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function exit_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to exit (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on button press in Empezar.
+function Empezar_Callback(hObject, eventdata, handles)
+% hObject    handle to Empezar (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+[a,b,c] = sphere(50);
+axes(handles.axes1)
+cla
+plot(NaN, NaN)
+xlabel('Eje Real')
+ylabel('Eje Imaginario')
+xlim([-10, 10])
+ylim([-10, 10])
+axes(handles.axes2)
+cla
+plot3(a, b, c, 'c')
+hold on
+xlabel('Coordenada X1')
+ylabel('Coordenada X2')
+zlabel('Coordenada X3')
+X = [];
+Y = [];
+i = 1;
+while(true)
+    [x, y, button] = ginput(1);
+    if(button == 3)
+        X(i) = NaN;
+        Y(i) = NaN;
+    else
+        if(-10<x && x<10 && -10<y && y<10)
+        X(i) = x;
+        Y(i) = y;
+        else
+            Z = complex(X, Y);
+            X1 = 2.*real(Z)./((abs(Z).^2)+1);
+            X2 = 2.*imag(Z)./((abs(Z).^2)+1);
+            X3 = ((abs(Z).^2)-1)./((abs(Z).^2)+1);
+            axes(handles.axes2)
+            plot3(X1, X2, X3, 'r')
+            xlim([-1 1])
+            ylim([-1 1])
+            zlim([-1 1])
+            break;
+        end
+        if(i ~= 1)
+            p1 = [X(i-1), Y(i-1)];
+            p2 = [X(i), Y(i)];
+            [U, V] = line2points(p1,p2);
+            axes(handles.axes1)
+            hold on
+            plot(U, V, 'r');
+            xlabel('Eje Real')
+            ylabel('Eje Imaginario')
+            xlim([-10, 10])
+            ylim([-10, 10])
+        end
+        
+    end
+    i = i+1;
+    
+    
+    
 end
