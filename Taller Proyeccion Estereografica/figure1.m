@@ -61,3 +61,4 @@ hold on
 plot3(X1, X2, X3, 'r')
 axis equal
 
+
