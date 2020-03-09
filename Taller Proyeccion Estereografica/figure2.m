@@ -44,20 +44,22 @@ function figure2(handles)
     axes(handles.axes1)
     
     plot(X, Y, 'r')
+    grid on
     xlabel('Eje Real')
     ylabel('Eje Imaginario')
     xlim([min(X), max(X)])
     ylim([min(Y), max(Y)])
     axes(handles.axes2)
     
-    [a,b,c] = sphere(50);
+    [a,b,c] = sphere(20);
     colormap winter
-    plot3(a, b, c,'c')
+    plot3(a, b, c,'LineStyle','--','color',[0.8,0.8,0.8]);
     xlabel('Coordenada X1')
     ylabel('Coordenada X2')
     zlabel('Coordenada X3')
     hold on
     plot3(X1, X2, X3, 'r')
+    grid on
     xlim([-1 1])
     ylim([-1 1])
     zlim([-1 1])

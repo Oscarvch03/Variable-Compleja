@@ -1,3 +1,4 @@
+%%% Funcion sugerida por Santiago Lopez
 function [X, Y] = line2points(p1, p2)
     %%% Funcion para unir 2 puntos mediante una recta
 

@@ -61,11 +61,13 @@ handles.output = hObject;
 % Update handles structure
 guidata(hObject, handles);
 axes(handles.axes1)
+grid on
 xlabel('Eje Real')
 ylabel('Eje Imaginario')
 xlim([-10, 10])
 ylim([-10, 10])
 axes(handles.axes2)
+grid on
 xlabel('Coordenada X1')
 ylabel('Coordenada X2')
 zlabel('Coordenada X3')
@@ -119,10 +121,11 @@ function GraficarPuntosProy_Callback(hObject, eventdata, handles)
 % hObject    handle to GraficarPuntosProy (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-[a,b,c] = sphere(50);
+[a,b,c] = sphere(20);
 axes(handles.axes1)
 cla
 plot(NaN,NaN)
+grid on
 xlabel('Eje Real')
 ylabel('Eje Imaginario')
 xlim([-10, 10])
@@ -132,7 +135,8 @@ cla
 xlabel('Coordenada X1')
 ylabel('Coordenada X2')
 zlabel('Coordenada X3')
-plot3(a, b, c, 'c')
+plot3(a, b, c,'LineStyle','--','color',[0.8,0.8,0.8]);
+grid on
 clc
 n = str2num(get(handles.num_puntos, "String"));
 [x, y] = ginput(n);
@@ -151,6 +155,7 @@ end
 axes(handles.axes1)
 cla
 plot(U, V, 'r')
+grid on
 xlabel('Eje Real')
 ylabel('Eje Imaginario')
 xlim([-10, 10])
@@ -168,9 +173,12 @@ axes(handles.axes2)
 
 hold on
 plot3(X1, X2, X3, 'r')
+grid on
 xlim([-1 1])
 ylim([-1 1])
 zlim([-1 1])
+enableDefaultInteractivity(handles.axes1)
+enableDefaultInteractivity(handles.axes2)
 
 
 
@@ -209,8 +217,10 @@ axes(handles.axes1)
 cla
 xlabel('Eje Real')
 ylabel('Eje Imaginario')
+grid on
 axes(handles.axes2)
 cla
+grid on
 xlabel('Coordenada X1')
 ylabel('Coordenada X2')
 zlabel('Coordenada X3')
@@ -226,6 +236,8 @@ elseif(f == 3)
 elseif(f == 4)
     figure4(handles);
 end
+enableDefaultInteractivity(handles.axes1)
+enableDefaultInteractivity(handles.axes2)
 
 
 % --- Executes on button press in Empezar.
@@ -246,53 +258,67 @@ function Empezar_Callback(hObject, eventdata, handles)
 axes(handles.axes1)
 cla
 plot(NaN, NaN)
+grid on
 xlabel('Eje Real')
 ylabel('Eje Imaginario')
 xlim([-10, 10])
 ylim([-10, 10])
 axes(handles.axes2)
 cla
-plot3(a, b, c, 'c')
+plot3(a, b, c,'LineStyle','--','color',[0.8,0.8,0.8]);
+grid on
 hold on
 xlabel('Coordenada X1')
 ylabel('Coordenada X2')
 zlabel('Coordenada X3')
-X = [];
-Y = [];
+a = [];
+b = [];
+U = [];
+V = [];
 i = 1;
 while(true)
     [x, y, button] = ginput(1);
     if(button == 3)
-        X(i) = NaN;
-        Y(i) = NaN;
+        a(i) = NaN;
+        b(i) = NaN;
     else
         if(-10<x && x<10 && -10<y && y<10)
-        X(i) = x;
-        Y(i) = y;
+            a(i) = x;
+            b(i) = y;
         else
-            Z = complex(X, Y);
-            X1 = 2.*real(Z)./((abs(Z).^2)+1);
-            X2 = 2.*imag(Z)./((abs(Z).^2)+1);
-            X3 = ((abs(Z).^2)-1)./((abs(Z).^2)+1);
-            axes(handles.axes2)
-            plot3(X1, X2, X3, 'r')
+            grid on
             xlim([-1 1])
             ylim([-1 1])
             zlim([-1 1])
             break;
         end
         if(i ~= 1)
-            p1 = [X(i-1), Y(i-1)];
-            p2 = [X(i), Y(i)];
+            p1 = [a(i-1), b(i-1)];
+            p2 = [a(i), b(i)];
             [U, V] = line2points(p1,p2);
             axes(handles.axes1)
             hold on
             plot(U, V, 'r');
+            grid on
             xlabel('Eje Real')
             ylabel('Eje Imaginario')
             xlim([-10, 10])
             ylim([-10, 10])
+%             X = horzcat(X, U);
+%             Y = horzcat(Y, V);
+%             X = [X, NaN, U];
+%             Y = [Y, NaN, V];
+            Z = complex(U, V);
+            X1 = 2.*real(Z)./((abs(Z).^2)+1);
+            X2 = 2.*imag(Z)./((abs(Z).^2)+1);
+            X3 = ((abs(Z).^2)-1)./((abs(Z).^2)+1);
+            axes(handles.axes2)
+            hold on
+            plot3(X1, X2, X3, 'r')
         end
     end
     i = i+1;
+    
 end
+enableDefaultInteractivity(handles.axes1)
+enableDefaultInteractivity(handles.axes2)

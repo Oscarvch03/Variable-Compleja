@@ -41,6 +41,7 @@ X3 = ((abs(Z).^2)-1)./((abs(Z).^2)+1);
 
 figure
 plot(X, Y, 'r')
+grid on
 xlim([min(X) max(X)])
 ylim([min(Y) max(Y)])
 xlabel('Eje Real')
@@ -48,10 +49,11 @@ ylabel('Eje Imaginario')
 title('Plano Complejo')
 saveas(gcf, 'figure2PC.png');
 figure
-[a,b,c] = sphere(50);
+[a,b,c] = sphere(20);
 colormap winter
-plot3(a, b, c,'c')
+plot3(a, b, c,'LineStyle','--','color',[0.8,0.8,0.8]);
 hold on
+grid on
 plot3(X1, X2, X3, 'r')
 xlim([-1 1])
 ylim([-1 1])
