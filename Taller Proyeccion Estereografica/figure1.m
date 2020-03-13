@@ -60,7 +60,7 @@ function figure1(handles)
     xlim([min(X), max(X)])
     ylim([min(Y), max(Y)])
     axes(handles.axes2)
-    [a,b,c] = sphere(20);
+    [a,b,c] = sphere(50);
     colormap winter
     plot3(a, b, c,'LineStyle','--','color',[0.8,0.8,0.8]);
     grid on

@@ -121,7 +121,7 @@ function GraficarPuntosProy_Callback(hObject, eventdata, handles)
 % hObject    handle to GraficarPuntosProy (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-[a,b,c] = sphere(20);
+[a,b,c] = sphere(50);
 axes(handles.axes1)
 cla
 plot(NaN,NaN)

@@ -189,7 +189,7 @@ function figure3(handles)
     ylim([min(Y), max(Y)])
     axes(handles.axes2)
     
-    [a,b,c] = sphere(20);
+    [a,b,c] = sphere(50);
     colormap winter
     plot3(a, b, c,'LineStyle','--','color',[0.8,0.8,0.8]);
     xlabel('Coordenada X1')

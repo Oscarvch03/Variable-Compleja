@@ -19,12 +19,6 @@ function figure2(handles)
     r = 0.08;
     tita = (0:(4*pi/n):4*pi) + pi/2;
     for i = 1:5:length(x)
-        if(i > 20*5)
-            r = r;
-        elseif(20*3 < i <= 20*5)
-            r = r;   
-        end
-
         x1 = r.*cos(tita) + x(i);
         y1 = r.*sin(tita) + y(i);
         X(length(X)+1) = NaN;
@@ -51,7 +45,7 @@ function figure2(handles)
     ylim([min(Y), max(Y)])
     axes(handles.axes2)
     
-    [a,b,c] = sphere(20);
+    [a,b,c] = sphere(50);
     colormap winter
     plot3(a, b, c,'LineStyle','--','color',[0.8,0.8,0.8]);
     xlabel('Coordenada X1')
